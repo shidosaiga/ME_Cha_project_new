@@ -12,7 +12,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{asset('fontend/assets/img/icon_mecha.png' )}}" rel="icon">  
+  <link href="{{asset('fontend/assets/img/icon_mecha.png' )}}" rel="icon">
   <link href="{{asset('fontend/assets/img/icon_mecha.png' )}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -44,22 +44,22 @@
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between">
     <a href="#hero">
-    <img src="{{asset('fontend/assets/img/logo.png')}}" width="100" height="100" >
-    
-      </a>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <img src="{{asset('fontend/assets/img/logo.png')}}" width="100" height="100">
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Menu</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">promotion</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+    </a>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+        <li><a class="nav-link scrollto" href="#about">About</a></li>
+        <li><a class="nav-link scrollto" href="#services">Menu</a></li>
+        <li><a class="nav-link scrollto " href="#portfolio">promotion</a></li>
+        <!-- <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
+        <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
@@ -76,14 +76,29 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li> -->
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="{{ route('login') }}">Login</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
 
-    </div>
-  </header><!-- End Header -->
+        @if (Auth::check())
+        <li><a class="getstarted scrollto" href="{{ route('home') }}">Account</a></li>
+        <li><a class="getstarted scrollto" href="{{ route('logout') }}" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();">Logout</a></li>
+        @else
+        <li><a class="getstarted scrollto" href="{{ route('login') }}">Login</a></li>
+        <li><a class="getstarted scrollto" href="{{ route('register') }}">Register</a></li>
+        @endif
+
+        
+      </ul>
+
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+      </form>
+
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
 
 
 
@@ -92,7 +107,7 @@
 
 <body>
 
-  
+
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
@@ -105,8 +120,8 @@
           <div><a href="#about" class="btn-get-started scrollto">Get Started</a></div>
         </div>
         <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
-        <img src="{{asset('fontend/assets/img/12.png')}}" class="img-fluid animated" alt="">
-         
+          <img src="{{asset('fontend/assets/img/12.png')}}" class="img-fluid animated" alt="">
+
         </div>
       </div>
     </div>
@@ -119,18 +134,20 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
-      @foreach($content as $contents)
+        @foreach($content as $contents)
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="150">
-            <img src="{{ asset('/admin/img/Mecha/'.$contents->image) }}"width="300"  class="img-fluid" alt="">
+            <img src="{{ asset('/admin/img/Mecha/'.$contents->image) }}" width="300" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
             <h3>{{$contents->name}}</h3>
-            <p class="font-stlye" ><h5>
-            {{$contents->description}}</h5>
+            <p class="font-stlye">
+            <h5>
+              {{$contents->description}}
+            </h5>
             </p>
-            
-            
+
+
           </div>
         </div>
 
@@ -140,7 +157,7 @@
     </section>
     <!-- End About Section -->
 
-    
+
 
 
 
@@ -165,27 +182,27 @@
 
         <div class="row gy-4">
 
-        @foreach($products as $product)
+          @foreach($products as $product)
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-blue">
               <div class="icon">
                 <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <img src="{{ asset('/admin/img/Mecha/'.$product->image) }}" width="100" height="100" >
+                  <img src="{{ asset('/admin/img/Mecha/'.$product->image) }}" width="100" height="100">
                 </svg>
                 <div class="portfolio-links">
-                <a href="{{ asset('/admin/img/Mecha/'.$product->image) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="โซดาแดง"><i class="bx bx-plus"></i></a>
+                  <a href="{{ asset('/admin/img/Mecha/'.$product->image) }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{$product->name}}"><i class="bx bx-plus"></i></a>
+                </div>
               </div>
-              </div>
-              <h4><a href="">{{$product->name}}</a></h4>
+              <h4>{{$product->name}}</a></h4>
               <p>{{$product->price}}</p>
               <p>{{$product->description}}</p>
             </div>
           </div>
-          
+
           @endforeach
 
-        
+
 
           <!-- Before Services end section -->
         </div>
@@ -195,12 +212,12 @@
 
 
 
-<!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
-<!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
-<!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
-<!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
-<!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
-    
+    <!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
+    <!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
+    <!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
+    <!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
+    <!-- ---------------------------------------------End Services Section-------- --------------------------------------- -->
+
 
 
     <!-- ============================================== Portfolio Section ============================================== -->
@@ -210,7 +227,8 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Image & Promotion</h2></div>
+          <h2>Image & Promotion</h2>
+        </div>
 
         <div class="row">
           <div class="col-lg-12 d-flex justify-content-center">
@@ -233,7 +251,7 @@
                 <p>promotion</p>
               </div>
               <div class="portfolio-links">
-                <a href="{{asset('fontend/assets/img/pro/pro9.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                <a href="{{asset('fontend/assets/img/pro/pro9.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
@@ -247,7 +265,7 @@
                 <p>promotion</p>
               </div>
               <div class="portfolio-links">
-                <a href="{{asset('fontend/assets/img/pro/pro10.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                <a href="{{asset('fontend/assets/img/pro/pro10.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
@@ -261,7 +279,7 @@
                 <p>เครื่องดื่ม</p>
               </div>
               <div class="portfolio-links">
-                <a href="{{asset('fontend/assets/img/pro/pro1.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                <a href="{{asset('fontend/assets/img/pro/pro1.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
@@ -289,7 +307,7 @@
                 <p>เครื่องดื่ม</p>
               </div>
               <div class="portfolio-links">
-                <a href="{{asset('fontend/assets/img/pro/pro3.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                <a href="{{asset('fontend/assets/img/pro/pro3.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
@@ -303,7 +321,7 @@
                 <p>บรรยากาศ</p>
               </div>
               <div class="portfolio-links">
-                <a href="{{asset('fontend/assets/img/pro/pro4.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                <a href="{{asset('fontend/assets/img/pro/pro4.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
@@ -345,13 +363,13 @@
                 <p>บรรยากาศ</p>
               </div>
               <div class="portfolio-links">
-                <a href="{{asset('fontend/assets/img/pro/pro5.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                <a href="{{asset('fontend/assets/img/pro/pro5.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox"><i class="bx bx-plus"></i></a>
                 <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
           </div>
 
-         
+
 
         </div>
 
@@ -383,7 +401,7 @@
             </div>
           </div>
 
-         
+
 
           <div class=" col-md-6">
             <div class="info-box mb-4">
@@ -398,11 +416,11 @@
         <div class="row">
 
           <div class="col-lg-6 ">
-          <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d30986.947784467997!2d100.6025315175825!3d13.87690239919996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d13.8510336!2d100.630528!4m3!3m2!1d13.9286731!2d100.576787!5e0!3m2!1sth!2sth!4v1629091178975!5m2!1sth!2sth" width="1295" height="650" style="border:0;" allowfullscreen loading="lazy"></iframe>  
-          <!-- <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe> -->
+            <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d30986.947784467997!2d100.6025315175825!3d13.87690239919996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d13.8510336!2d100.630528!4m3!3m2!1d13.9286731!2d100.576787!5e0!3m2!1sth!2sth!4v1629091178975!5m2!1sth!2sth" width="1295" height="650" style="border:0;" allowfullscreen loading="lazy"></iframe>
+            <!-- <iframe class="mb-4 mb-lg-0" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe> -->
           </div>
 
-         
+
 
         </div>
 
@@ -413,27 +431,27 @@
 
 
   <!-- ======= ---------------------------------Footer-------------------------------- ======= -->
-<footer id="footer">
+  <footer id="footer">
 
-<div class="footer-top">
-  <div class="container">
-    <div class="row">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
 
-    <div class="social-links text-center text-md-right pt-3 pt-md-0">
-    <img src="{{asset('fontend/assets/img/logo.png')}}" width="100" height="100" >
-      <a href="https://www.facebook.com/maysanee.k/" target="_blank" class="facebook"><i class="bx bxl-facebook" ></i></a>facebook
-      <a href="#" class="phone"><i class="bi bi-telephone"></i></a>084-698-0472
-      
-    </div>
-  </div>
+          <div class="social-links text-center text-md-right pt-3 pt-md-0">
+            <img src="{{asset('fontend/assets/img/logo.png')}}" width="100" height="100">
+            <a href="https://www.facebook.com/maysanee.k/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>facebook
+            <a href="#" class="phone"><i class="bi bi-telephone"></i></a>084-698-0472
 
-</div>
-</footer>
-<!-- --------------------------------End Footer ------------------------------------------------->
+          </div>
+        </div>
+
+      </div>
+  </footer>
+  <!-- --------------------------------End Footer ------------------------------------------------->
 
   <!-- ------------------------------- !!!!!!!!!!!!!!!!!!!!!!! ------------------------------------------------->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
@@ -447,9 +465,8 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('fontend/assets/js/main.js')}}"></script>
-  
+
   <!-- ------------------------------- !!!!!!!!!!!!!!!!!!!!!!! ------------------------------------------------->
 </body>
 
 </html>
-
